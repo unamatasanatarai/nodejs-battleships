@@ -9,7 +9,7 @@ Convert.prototype.validateInput = function(string) {
   let r = string.match(this.validShot);
 
   if (r === null) {
-    throw Error("Illegal shot");
+    throw Error("Illegal coordinates");
   }
   return true;
 };
