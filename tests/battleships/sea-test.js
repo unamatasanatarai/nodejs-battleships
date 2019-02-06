@@ -96,4 +96,18 @@ describe("Battleships Sea", function() {
     expect(sea.shoot(0, 4)).to.equal(Shot.SUNK);
     expect(sea.allShipsSunk()).to.equal(true);
   });
+
+  it("should not sink a ship if consecutive shots are fired in the same place", function() {
+    let sea = new Sea(10, 10);
+    let ship = new Ship(5);
+    ship.x = 0;
+    ship.y = 0;
+    ship.orientation = Orientation.VERTICAL;
+    sea.launchShip(ship);
+    expect(sea.shoot(0, 0)).to.equal(Shot.HIT);
+    expect(sea.shoot(0, 0)).to.equal(Shot.HIT);
+    expect(sea.shoot(0, 0)).to.equal(Shot.HIT);
+    expect(sea.shoot(0, 0)).to.equal(Shot.HIT);
+    expect(ship.hits).to.equal(1);
+  });
 });

@@ -23,6 +23,9 @@ Sea.prototype.shoot = function(x, y) {
   if (x >= this.width || y >= this.height || x < 0 || y < 0) {
     return Shot.MISS;
   }
+  if (this.shots[y][x] !== 0) {
+    return Shot.HIT;
+  }
   this.shots[y][x] = 1;
   if (this.hasShipAt(x, y)) {
     let ship = this.shipPositions[y][x];
