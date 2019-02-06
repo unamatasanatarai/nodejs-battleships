@@ -1,12 +1,17 @@
 const readln = require("readline");
+const Game = require("./battleships/game.js");
 const Sea = require("./battleships/sea.js");
-const Ship = require("./battleships/ship.js");
-const Shot = require("./battleships/shot.js");
-const Orientation = require("./battleships/orientation.js");
 const Convert = require("./game/convert.js");
 const Board = require("./game/board.js");
 
+// helper
+function clearScreen() {
+  process.stdout.write("\033c");
+}
+
 // prep game
+const game = new Game();
+game.withSea(new Sea(10, 10)).withShips([4, 4, 5]);
 const convert = new Convert();
 const board = new Board();
 
@@ -20,25 +25,11 @@ let question = function(q) {
   });
 };
 
-// prep map
-let sea = new Sea(10, 10);
-let battleship = new Ship(5);
-battleship.orientation = Orientation.VERTICAL;
-let destroyerOne = new Ship(4);
-destroyerOne.x = 1;
-destroyerOne.orientation = Orientation.VERTICAL;
-let destroyerTwo = new Ship(4);
-destroyerTwo.x = 2;
-destroyerTwo.orientation = Orientation.VERTICAL;
-sea
-  .launchShip(battleship)
-  .launchShip(destroyerOne)
-  .launchShip(destroyerTwo);
-// clear screen
-process.stdout.write("\033c");
 (async function main() {
   let answer;
-  board.draw(sea.shots);
+  clearScreen();
+  board.draw(game.sea.shots);
+  board.drawShips(game.sea.shipPositions);
   while (true) {
     answer = await question("Type your shot (a5, b2... or 'bye') ");
     answer = String(answer).trim();
@@ -46,26 +37,14 @@ process.stdout.write("\033c");
       console.warn("So sad to see you go...");
       break;
     }
-    process.stdout.write("\033c");
+    clearScreen();
     try {
-      let shot = convert.toCoordinates(answer);
-      let hit = sea.shoot(shot.x, shot.y);
-      if (hit == Shot.HIT) {
-        console.log("You hit my ship!");
-      } else if (hit == Shot.SUNK) {
-        console.log("You sunk me ship!");
-      } else {
-        console.log("You missed!");
-      }
+      game.shoot(convert.toCoordinates(answer));
     } catch (error) {
       console.log(answer, error.message);
     }
-
-    board.draw(sea.shots);
-    if (sea.allShipsSunk()) {
-      console.log("YOU WIN!");
-      console.log("YOU WIN!");
-      console.log("YOU WIN!");
+    board.draw(game.sea.shots);
+    if (game.isGameOver()) {
       console.log("YOU WIN!");
       break;
     }
