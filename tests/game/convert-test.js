@@ -25,4 +25,10 @@ describe("Game", function() {
       "Illegal coordinates"
     );
   });
+
+  it("should accept whitespace", function() {
+    let convert = new Convert();
+    let coords = convert.toCoordinates(" B5 ");
+    expect(coords.x).to.equal(1);
+  });
 });

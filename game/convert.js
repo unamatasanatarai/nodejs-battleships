@@ -23,7 +23,7 @@ Convert.prototype.toY = function(string) {
 };
 
 Convert.prototype.toCoordinates = function(string) {
-  string = string.toLowerCase();
+  string = string.toLowerCase().trim();
   this.validateInput(string);
 
   return { x: this.toX(string), y: this.toY(string) };
