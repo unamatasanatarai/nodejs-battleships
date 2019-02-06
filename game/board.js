@@ -24,6 +24,8 @@ Board.prototype.draw = function(grid) {
   });
   console.log(buffer);
 };
+
+// debug only (?)
 Board.prototype.drawShips = function(grid) {
   let buffer = "".padEnd(3, " ");
   for (let i = 0; i < grid[0].length; i++) {
