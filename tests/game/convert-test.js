@@ -3,7 +3,7 @@ var expect = chai.expect;
 var Sea = require("../../battleships/sea.js");
 const Convert = require("../../game/convert.js");
 
-describe("Game Convert", function() {
+describe("Game", function() {
   it("should convert string to coordinates", function() {
     let convert = new Convert();
     let coordinates = convert.toCoordinates("a5");
@@ -16,5 +16,19 @@ describe("Game Convert", function() {
     let coordinates = convert.toCoordinates("B5");
     expect(coordinates.x).to.equal(1);
     expect(coordinates.y).to.equal(4);
+  });
+
+  it("should not accept double letters", function() {
+    let convert = new Convert();
+    expect(() => convert.validateInput("eB5")).to.throw(
+      Error,
+      "Illegal coordinates"
+    );
+  });
+
+  it("should accept whitespace", function() {
+    let convert = new Convert();
+    let coords = convert.toCoordinates(" B5 ");
+    expect(coords.x).to.equal(1);
   });
 });
