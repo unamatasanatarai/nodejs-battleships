@@ -1,7 +1,7 @@
 const readln = require("readline");
 const Game = require("./battleships/game.js");
 const Sea = require("./battleships/sea.js");
-const Convert = require("./game/convert.js");
+const Convert = require("./game/user-command-transpiler.js");
 const Board = require("./game/board.js");
 
 // helper
