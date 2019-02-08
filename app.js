@@ -29,7 +29,8 @@ let question = function(q) {
   let answer;
   clearScreen();
   board.draw(game.sea.shots);
-  // board.drawShips(game.sea.shipPositions);
+  // for a quick game, uncomment below to see your ships
+  board.drawShips(game.sea.shipPositions);
   while (true) {
     answer = await question("Type your shot (a5, b2... or 'bye') ");
     answer = String(answer).trim();
