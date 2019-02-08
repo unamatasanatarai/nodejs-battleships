@@ -94,22 +94,12 @@ Sea.prototype.assignRandomPositionToShip = function(ship) {
           free = false;
         }
       }
-      // if (free) {
-      // ship.x = position.x;
-      // ship.y = position.y;
-      // return true;
-      // }
     } else {
       for (let y = position.y; y < position.y + ship.size; y++) {
         if (!this.isShipPositionEmpty(position.x, y)) {
           free = false;
         }
       }
-      // if (free) {
-      // ship.x = position.x;
-      // ship.y = position.y;
-      // return true;
-      // }
     }
     if (free) {
       ship.x = position.x;
