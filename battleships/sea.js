@@ -1,5 +1,6 @@
 const Shot = require("./shot");
 const Orientation = require("./orientation");
+const SeaStatus = require("./sea-status");
 const Area = require("./utilities/area");
 
 class Sea {
@@ -24,14 +25,17 @@ class Sea {
     if (!this.isValidPosition(x, y)) {
       return Shot.MISS;
     }
-    if (this.shots[y][x] !== 1 && this.shots[y][x] !== 0) {
+    if (
+      this.shots[y][x] !== SeaStatus.MISS &&
+      this.shots[y][x] !== SeaStatus.WATER
+    ) {
       return Shot.HIT;
     }
-    this.shots[y][x] = 1;
+    this.shots[y][x] = SeaStatus.MISS;
     if (this.hasShipAt(x, y)) {
-      let ship = this.shipPositions[y][x];
+      const ship = this.shipPositions[y][x];
       ship.hit();
-      this.shots[y][x] = 2;
+      this.shots[y][x] = SeaStatus.HIT;
       return ship.isSunk() ? Shot.SUNK : Shot.HIT;
     }
     return Shot.MISS;
@@ -56,7 +60,7 @@ class Sea {
     this.ships.forEach(ship => {
       sunk += 1 * ship.isSunk();
     });
-    return this.ships.length == sunk;
+    return this.ships.length === sunk;
   }
 
   generateRandomPositions() {
@@ -66,14 +70,11 @@ class Sea {
         positions.push({ y: y, x: x });
       }
     }
-    positions.sort(function() {
-      return 0.5 - Math.random();
-    });
+    positions.sort(() => 0.5 - Math.random());
     return positions;
   }
 
   isShipPositionEmpty(x, y) {
-    j;
     if (this.isValidPosition(x, y)) {
       return this.shipPositions[y][x] === 0;
     }
@@ -81,11 +82,10 @@ class Sea {
   }
 
   assignRandomPositionToShip(ship) {
-    ship.orientation =
-      Math.random() > 0.5 ? Orientation.VERTICAL : Orientation.HORIZONTAL;
+    ship.randomizeOrientation();
 
     for (let i = 0; i < this.randomPositions.length; i++) {
-      let position = this.randomPositions[i];
+      const position = this.randomPositions[i];
       let free = true;
       if (ship.orientation === Orientation.HORIZONTAL) {
         for (let x = position.x; x < position.x + ship.size; x++) {

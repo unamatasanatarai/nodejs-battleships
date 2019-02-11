@@ -1,7 +1,7 @@
 const Orientation = require("./orientation");
 
 class Ship {
-  constructor(size) {
+  constructor(size = 4) {
     this.size = size;
     this.hits = 0;
     this.orientation = Orientation.HORIZONTAL;
@@ -16,6 +16,11 @@ class Ship {
 
   isSunk() {
     return this.hits >= this.size;
+  }
+
+  randomizeOrientation() {
+    this.hit.orientation =
+      Math.random() > 0.5 ? Orientation.VERTICAL : Orientation.HORIZONTAL;
   }
 }
 
