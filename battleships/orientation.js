@@ -1,4 +1,4 @@
-module.exports ={
-    HORIZONTAL: 0,
-    VERTICAL: 1
+module.exports = {
+  HORIZONTAL: 0,
+  VERTICAL: 1
 };

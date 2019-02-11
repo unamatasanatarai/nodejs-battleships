@@ -1,4 +1,4 @@
-const Orientation = require("./orientation.js");
+const Orientation = require("./orientation");
 
 class Ship {
   constructor(size) {

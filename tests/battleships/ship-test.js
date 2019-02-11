@@ -1,7 +1,7 @@
 var chai = require("chai");
 var expect = chai.expect;
-var Orientation = require("../../battleships/orientation.js");
-var Ship = require("../../battleships/ship.js");
+var Orientation = require("../../battleships/orientation");
+var Ship = require("../../battleships/ship");
 
 describe("Battleships Ship", function() {
   it("should be horizontal by default", function() {

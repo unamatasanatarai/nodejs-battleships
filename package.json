@@ -10,6 +10,6 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/**/*-test.js --reporter spec"
+    "test": "./node_modules/mocha/bin/mocha tests/ --reporter spec --recursive"
   }
 }
