@@ -173,7 +173,7 @@ describe("Battleships Sea", function() {
 
   it("should place random positions for ships", function() {
     const sea = new Sea(10, 10);
-    sea.randomPositions = [{ x: 3, y: 4 }, { x: 3, y: 5 }];
+    sea.randomPositions = [{ x: 3, y: 4 }, { x: 6, y: 5 }];
     const ship = new Ship(4);
     expect(sea.assignRandomPositionToShip(ship)).to.equal(true);
     sea.launchShip(ship);

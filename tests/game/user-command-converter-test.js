@@ -1,6 +1,6 @@
 var chai = require("chai");
 var expect = chai.expect;
-const Convert = require("../../game/user-command-transpiler.js");
+const Convert = require("../../game/user-command-converter");
 
 describe("Game Convert", function() {
   it("should convert string to coordinates", function() {

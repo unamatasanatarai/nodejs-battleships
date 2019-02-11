@@ -1,7 +1,8 @@
-var chai = require("chai");
-var expect = chai.expect;
-var Orientation = require("../../battleships/orientation");
-var Ship = require("../../battleships/ship");
+const chai = require("chai");
+const expect = chai.expect;
+const Orientation = require("../../battleships/orientation");
+const Ship = require("../../battleships/ship");
+const sinon = require("sinon");
 
 describe("Battleships Ship", function() {
   it("should be horizontal by default", function() {
@@ -30,5 +31,21 @@ describe("Battleships Ship", function() {
     let ship = new Ship(4);
     ship.orientation = Orientation.VERTICAL;
     expect(ship.orientation).to.equal(Orientation.VERTICAL);
+  });
+
+  it("Should random orient the ship horizontally", function() {
+    const mock = sinon.stub(Math, "random").returns(0);
+    const ship = new Ship(5);
+    ship.randomizeOrientation();
+    expect(ship.orientation).to.equal(Orientation.HORIZONTAL);
+    mock.restore();
+  });
+
+  it("Should random orient the ship vertically", function() {
+    const mock = sinon.stub(Math, "random").returns(0.6);
+    const ship = new Ship(5);
+    ship.randomizeOrientation();
+    expect(ship.orientation).to.equal(Orientation.VERTICAL);
+    mock.restore();
   });
 });

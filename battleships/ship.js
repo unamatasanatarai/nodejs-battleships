@@ -19,7 +19,7 @@ class Ship {
   }
 
   randomizeOrientation() {
-    this.hit.orientation =
+    this.orientation =
       Math.random() > 0.5 ? Orientation.VERTICAL : Orientation.HORIZONTAL;
   }
 }
