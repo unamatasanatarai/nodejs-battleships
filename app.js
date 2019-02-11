@@ -4,11 +4,6 @@ const Sea = require("./battleships/sea.js");
 const Convert = require("./game/user-command-transpiler.js");
 const Board = require("./game/board.js");
 
-// helper
-function clearScreen() {
-  process.stdout.write("\033c");
-}
-
 // prep game
 const game = new Game();
 game.withSea(new Sea(10, 10)).withShips([4, 4, 5]);
@@ -27,7 +22,7 @@ let question = function(q) {
 
 (async function main() {
   let answer;
-  clearScreen();
+  console.clear();
   board.draw(game.sea.shots);
   // for a quick game, uncomment below to see your ships
   // board.drawShips(game.sea.shipPositions);
@@ -38,7 +33,7 @@ let question = function(q) {
       console.warn("So sad to see you go...");
       break;
     }
-    clearScreen();
+    console.clear();
     try {
       game.shoot(convert.toCoordinates(answer));
     } catch (error) {
