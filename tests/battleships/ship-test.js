@@ -9,7 +9,7 @@ describe("Battleships Ship", function() {
     expect(ship.orientation).to.equal(Orientation.HORIZONTAL);
   });
 
-  it("Should be sunk after 4 hits", function() {
+  it("size 4 Ship should be sunk after 4 hits", function() {
     let ship = new Ship(4);
     ship
       .hit()
@@ -19,7 +19,7 @@ describe("Battleships Ship", function() {
     expect(ship.isSunk()).to.true;
   });
 
-  it("Should not be sunk after 3 hits", function() {
+  it("size 4 Ship should not be sunk after 3 hits", function() {
     let ship = new Ship(4);
     ship.hit().hit();
     ship.hit();
