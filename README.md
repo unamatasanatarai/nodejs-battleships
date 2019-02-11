@@ -1,8 +1,11 @@
 # Console nodejs battleships
 
 ## To run the game, type:
+
 ```
 node app.js
+# if you wish to know where ships are
+node app.js --cheat
 ```
 
 ## testing:
@@ -12,16 +15,19 @@ npm test
 ```
 
 ## built with:
+
 ```
 ϟ node -v
 v8.11.4
 ```
+
 ```
 ϟ npm -v
 5.8.0
 ```
 
 ### you may expect:
+
 ```
 You hit my ship!
    a b c d e f g h i j

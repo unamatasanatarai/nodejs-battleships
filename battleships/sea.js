@@ -42,7 +42,7 @@ class Sea {
   }
 
   launchShip(ship) {
-    if (ship.orientation == Orientation.HORIZONTAL) {
+    if (ship.orientation === Orientation.HORIZONTAL) {
       for (let x = ship.x; x < ship.x + ship.size; x++) {
         this.shipPositions[ship.y][x] = ship;
       }

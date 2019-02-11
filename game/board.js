@@ -29,20 +29,22 @@ class Board {
   }
 
   // debug only (?)
-  drawShips(grid) {
+  drawShips(shipPositions) {
     let buffer = "".padEnd(3, " ");
-    for (let i = 0; i < grid[0].length; i++) {
+    for (let i = 0; i < shipPositions[0].length; i++) {
       buffer += String.fromCharCode(97 + i).padEnd(2, " ");
     }
     buffer += "\n";
     let col = 1;
 
-    grid.forEach(row => {
+    shipPositions.forEach(row => {
       buffer += String(col).padEnd(3, " ");
       col++;
       row.forEach(item => {
         if (item !== 0) {
           buffer += "*".padEnd(2, " ");
+        } else {
+          buffer += " ".padEnd(2, "  ");
         }
       });
       buffer += "\n";
