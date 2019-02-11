@@ -78,7 +78,10 @@ Sea.prototype.generateRandomPositions = function() {
 };
 
 Sea.prototype.isShipPositionEmpty = function(x, y) {
-  return this.shipPositions[y][x] === 0;
+  if (this.isValidPosition(x, y)) {
+    return this.shipPositions[y][x] === 0;
+  }
+  return false;
 };
 
 Sea.prototype.assignRandomPositionToShip = function(ship) {
