@@ -12,35 +12,34 @@ const convert = new Convert();
 const board = new Board(screen);
 
 let cheatmode = false;
-process.argv.forEach(function(val, index, array) {
-  if (val === "--cheat") {
-    cheatmode = true;
-  }
+process.argv.forEach(val => {
+    if (val === "--cheat") {
+        cheatmode = true;
+    }
 });
 (async function main() {
-  let answer;
-  screen.clear();
-  board.draw(game.sea.shots);
-  // for a quick game, uncomment below to see your ships
-  if (cheatmode) board.drawShips(game.sea.shipPositions);
-  while (true) {
-    answer = await screen.readln("Type your shot (a5, b2... or 'bye') ");
-    answer = String(answer).trim();
-    if (answer == "bye") {
-      screen.writeln("So sad to see you go...");
-      break;
-    }
+    let answer;
     screen.clear();
-    try {
-      game.shoot(convert.toCoordinates(answer));
-    } catch (error) {
-      screen.writeln(answer, error.message);
-    }
     board.draw(game.sea.shots);
-    if (game.isGameOver()) {
-      screen.writeln("YOU WIN!");
-      break;
+    if (cheatmode) board.drawShips(game.sea.shipPositions);
+    while (true) {
+        answer = await screen.readln("Type your shot (a5, b2... or 'bye') ");
+        answer = String(answer).trim();
+        if (answer == "bye") {
+            screen.writeln("So sad to see you go...");
+            break;
+        }
+        screen.clear();
+        try {
+            game.shoot(convert.toCoordinates(answer));
+        } catch (error) {
+            screen.writeln(answer, error.message);
+        }
+        board.draw(game.sea.shots);
+        if (game.isGameOver()) {
+            screen.writeln("YOU WIN!");
+            break;
+        }
     }
-  }
-  process.exit(0);
+    process.exit(0);
 })();

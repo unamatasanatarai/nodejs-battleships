@@ -1,16 +1,17 @@
 {
-  "description": "Battleships",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unamatasanatarai/nodejs-battleships"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "sinon": "^7.2.3"
-  },
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/ --reporter spec --recursive"
-  }
+    "description": "Battleships",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/unamatasanatarai/nodejs-battleships"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "eslint": "^5.13.0",
+        "mocha": "^5.2.0",
+        "sinon": "^7.2.3"
+    },
+    "scripts": {
+        "test": "./node_modules/mocha/bin/mocha tests/ --reporter spec --recursive"
+    }
 }

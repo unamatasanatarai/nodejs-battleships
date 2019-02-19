@@ -1,4 +1,4 @@
 module.exports = {
-  HORIZONTAL: "h",
-  VERTICAL: "v"
+    HORIZONTAL: "h",
+    VERTICAL: "v"
 };
